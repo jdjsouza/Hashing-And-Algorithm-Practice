@@ -1,0 +1,44 @@
+_____TYPESCRIPT SETUP_____
+
+To compile to js:
+ *tsc "appname"
+ To do this with watch enabled
+   *tsc "appname" -w  
+
+To create typescript config file:
+ tsc --init
+ *updated to es6
+ *set outDir to "./dist"
+ *set rootDir to "./src"
+ *uncomment moduleResolution : "node"
+
+ **----after these changes we compile with tsc----**
+
+  npm install 
+  -D    //installs as dev dependency
+  typescript 
+  ts-node 
+  express 
+  nodemon //watches server after config
+  @types/node //custom types for node
+  @types/express //custom types for express
+
+
+Package.json scripts
+   "start": "node dist/app.js", //runs the js file compiled by the ts
+    "dev": "nodemon src/app.js", //runs nodemon on ts source file 
+    "build": "tsc -p ."       //compiled with -p tag compiles js to dist folder
+
+    _____API KEY AND HEADER_____
+{
+ "headers": {
+  "auth": "[your token]" ,
+  "Content-Type": "application/json"
+ }
+}
+
+installed dotenv
+Stored api key in .env file 
+randomKeyAuthToken = yourApiKey
+
+installed request
