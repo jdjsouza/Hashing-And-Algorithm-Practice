@@ -14,24 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const request = require('request');
-const app = express_1.default();
+const server = express_1.default();
 const ENDPOINT_DATA = 'https://random-data-api.com/api/coffee/random_coffee?size=10';
-const getData = () => {
+server.get('/', (req, res) => {
+    console.log('made it');
+    let apiResponse;
     request(ENDPOINT_DATA, { json: true }, (err, res, body) => __awaiter(void 0, void 0, void 0, function* () {
-        const apiResponse = yield body;
-        hashAndSort(apiResponse);
-    }));
-};
-function hashAndSort(apiResponse) {
-    console.log(apiResponse[0]);
-    let hash = (string, max) => {
-        let hash = 0;
-        for (let i = 0; i < string.length; i++) {
-            hash += string.charCodeAt(i); //charCode is a numeric value
-            return hash % max;
+        if (err) {
+            console.log(err);
         }
-    };
-    console.log(hash(apiResponse[2].uid, 10));
-}
-getData();
-app.listen(5000, () => console.log('Server Running'));
+        else {
+            console.log(body);
+            apiResponse = yield body;
+        }
+    }));
+    res.send(apiResponse);
+});
+server.listen(5000, () => console.log('Server Running port 5000'));
