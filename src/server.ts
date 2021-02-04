@@ -1,26 +1,10 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-const request = require('request');
-const server = express();
-const ENDPOINT_DATA: string =
-  'https://random-data-api.com/api/coffee/random_coffee?size=10';
+const cors = require('cors');
+const app = express();
+const randomUserGet = require('./randomUserGet');
 
-server.get('/', (req, res) => {
-  console.log('made it');
+app.use(cors());
 
-  let apiResponse;
-  request(
-    ENDPOINT_DATA,
-    { json: true },
-    async (err: any, res: any, body: any) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(body);
-        apiResponse = await body;
-      }
-    }
-  );
-  res.send(apiResponse);
-});
+app.use('/', randomUserGet);
 
-server.listen(5000, () => console.log('Server Running port 5000'));
+app.listen(5000, () => console.log('Server Running port 5000'));
