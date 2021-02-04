@@ -18,7 +18,11 @@ window.onload = function () {
         });
         displayData = data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        displayData = [`Is The Server Running? : ${err}`];
+        processData('display', displayData);
+        console.log(err);
+      });
   }
   grabButton.addEventListener('click', () => {
     storage = [];
@@ -49,10 +53,15 @@ window.onload = function () {
 
     switch (process) {
       case 'display':
+        console.log(data);
         list.textContent = '';
         data.map((item) => {
+          console.log(item);
           const entry = document.createElement('li');
-          entry.textContent = item.blend_name;
+          console.log(item.length);
+          !item.uid
+            ? (entry.textContent = item)
+            : (entry.textContent = item.blend_name);
           list.appendChild(entry);
         });
         break;
