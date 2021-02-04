@@ -1,7 +1,9 @@
 window.onload = function () {
+  //See comments below on how to configure for different data sets!
+  //Be sure to check out the ransomUserGet.ts file for how to change your data type coming in.
   let displayData;
   let storage = [];
-  const storageLimit = 97;
+  const storageLimit = 97; //set this to be larger or === your data set number, you should choose a prime number.
   const list = document.getElementById('data');
   const grabButton = document.getElementById('grabData');
   const displayButton = document.getElementById('displayData');
@@ -18,7 +20,11 @@ window.onload = function () {
         });
         displayData = data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        displayData = [`Is The Server Running? : ${err}`];
+        processData('display', displayData);
+        console.log(err);
+      });
   }
   grabButton.addEventListener('click', () => {
     storage = [];
@@ -49,10 +55,15 @@ window.onload = function () {
 
     switch (process) {
       case 'display':
+        console.log(data);
         list.textContent = '';
         data.map((item) => {
+          console.log(item);
           const entry = document.createElement('li');
-          entry.textContent = item.blend_name;
+          console.log(item.length); //This is for the display incoming data from this site should have a uid.
+          !item.uid
+            ? (entry.textContent = item)
+            : (entry.textContent = item.blend_name); // change the textContent to item.trait_required for your specific data set as configured in server *see server comments.
           list.appendChild(entry);
         });
         break;
@@ -75,7 +86,7 @@ window.onload = function () {
           }
         };
         data.map((item) => {
-          add(item.blend_name, item.notes);
+          add(item.blend_name, item.notes); //change these to match your data, the first item being the key (generally a name) and the second being the data you want to associate with the key.
         });
         break;
       case 'lookup':

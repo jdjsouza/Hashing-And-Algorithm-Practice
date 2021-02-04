@@ -1,5 +1,9 @@
+body {
+  background-color: rgb(221, 218, 212);
+}
+
 .buttons {
-  border: solid rgb(47, 47, 49) 1px;
+  border: inset rgb(47, 47, 49) 1px;
   padding-top: 8px;
   background-color: rgb(187, 185, 185);
   text-align: center;
@@ -7,12 +11,44 @@
   margin: 0;
 }
 
+.display {
+  margin: 0;
+  background-color: rgba(12, 12, 12, 0.922);
+  color: rgba(5, 145, 5, 0.822);
+  font-size: 20px;
+  width: auto;
+  border: inset rgb(187, 185, 185) 4px;
+  min-height: 80vh;
+  text-align: center;
+}
+
+.displayContent {
+  margin: auto;
+  width: 50%;
+}
+.displayContent * {
+  margin: auto;
+}
+.displayContent ul {
+  margin: auto;
+  padding-top: 4rem;
+}
+
 #grabData {
-  background-color: rgb(179, 80, 80);
+  background-color: rgba(179, 80, 80, 0.8);
 }
 
 #hashData {
-  background-color: rgb(128, 202, 140);
+  background-color: rgba(128, 202, 140, 0.8);
+}
+
+#displayData {
+  margin-right: 2rem;
+  background-color: rgba(83, 85, 204, 0.8);
+}
+
+#sort {
+  margin-right: 2rem;
 }
 
 #data {
