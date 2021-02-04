@@ -35,11 +35,15 @@ body {
 }
 
 #grabData {
-  background-color: rgb(179, 80, 80);
+  background-color: rgba(179, 80, 80, 0.8);
 }
 
 #hashData {
-  background-color: rgb(128, 202, 140);
+  background-color: rgba(128, 202, 140, 0.8);
+}
+
+#displayData {
+  background-color: rgba(83, 85, 204, 0.8);
 }
 
 #data {
