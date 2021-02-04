@@ -1,7 +1,8 @@
 window.onload = function () {
+  //See comments below on how to configure for different data sets!
   let displayData;
   let storage = [];
-  const storageLimit = 97;
+  const storageLimit = 97; //set this to be larger or === your data set number, you should choose a prime number.
   const list = document.getElementById('data');
   const grabButton = document.getElementById('grabData');
   const displayButton = document.getElementById('displayData');
@@ -58,10 +59,10 @@ window.onload = function () {
         data.map((item) => {
           console.log(item);
           const entry = document.createElement('li');
-          console.log(item.length);
+          console.log(item.length); //This is for the display incoming data from this site should have a uid.
           !item.uid
             ? (entry.textContent = item)
-            : (entry.textContent = item.blend_name);
+            : (entry.textContent = item.blend_name); // change the textContent to item.trait_required for your specific data set as configured in server *see server comments.
           list.appendChild(entry);
         });
         break;
@@ -84,7 +85,7 @@ window.onload = function () {
           }
         };
         data.map((item) => {
-          add(item.blend_name, item.notes);
+          add(item.blend_name, item.notes); //change these to match your data, the first item being the key (generally a name) and the second being the data you want to associate with the key.
         });
         break;
       case 'lookup':
