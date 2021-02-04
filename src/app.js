@@ -1,42 +1,41 @@
 window.onload = function () {
-  let randomData;
-  const storage = [];
+  let displayData;
+  let storage = [];
   const storageLimit = 97;
   const list = document.getElementById('data');
   const grabButton = document.getElementById('grabData');
+  const displayButton = document.getElementById('displayData');
   const hashButton = document.getElementById('hashData');
   const searchButton = document.getElementById('searchButton');
-  async function getUsers() {
+  async function getData() {
     await fetch('http://localhost:5000')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         data.map((item) => {
           const entry = document.createElement('li');
           entry.textContent = item.blend_name;
           list.appendChild(entry);
         });
-        randomData = data;
+        displayData = data;
       })
       .catch((err) => console.log(err));
   }
   grabButton.addEventListener('click', () => {
+    storage = [];
     list.textContent = '';
-    getUsers();
+    getData();
+  });
+  displayButton.addEventListener('click', () => {
+    processData('display', displayData);
   });
   hashButton.addEventListener('click', () => {
-    processData('add', randomData);
+    processData('add', displayData);
   });
   searchButton.addEventListener('click', () => {
     const searchField = document.getElementById('searchField');
     let data = searchField.value;
     list.textContent = '';
-    let location = processData('lookup', data);
-    const entry = document.createElement('li');
-    location != undefined
-      ? (entry.textContent = location)
-      : (entry.textContent = 'Nothing here');
-    list.appendChild(entry);
+    processData('lookup', data);
   });
 
   function processData(process, data) {
@@ -49,6 +48,14 @@ window.onload = function () {
     };
 
     switch (process) {
+      case 'display':
+        list.textContent = '';
+        data.map((item) => {
+          const entry = document.createElement('li');
+          entry.textContent = item.blend_name;
+          list.appendChild(entry);
+        });
+        break;
       case 'add':
         let add = (key, value) => {
           const index = hash(key, storageLimit);
@@ -58,8 +65,9 @@ window.onload = function () {
           } else {
             inserted = false;
             for (let i = 0; i < storage[index].length; i++) {
-              storage[index][i][1] = value;
-              inserted = true;
+              if (storage[index][i][1] === value) {
+                inserted = true;
+              }
             }
           }
           if (inserted === false) {
@@ -69,22 +77,34 @@ window.onload = function () {
         data.map((item) => {
           add(item.blend_name, item.notes);
         });
-        console.log(storage);
         break;
       case 'lookup':
         let lookup = (key) => {
           const index = hash(key, storageLimit);
+          console.log(index, storage);
           if (storage[index] === undefined) {
             return undefined;
           } else {
             for (let i = 0; i < storage[index].length; i++) {
               if (storage[index][i][0] === key) {
+                console.log('success');
+                console.log(storage[index][i][1]);
                 return storage[index][i][1];
               }
             }
           }
         };
-        lookup(data);
+        let display = () => {
+          const result = lookup(data);
+          const entry = document.createElement('li');
+          console.log('result', result);
+          result != undefined
+            ? (entry.textContent = result)
+            : (entry.textContent = 'Nothing here');
+          list.appendChild(entry);
+        };
+        display();
+
         break;
       default:
         return 0;

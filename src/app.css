@@ -1,11 +1,21 @@
 .buttons {
-  background-color: grey;
+  border: solid rgb(47, 47, 49) 1px;
+  padding-top: 8px;
+  background-color: rgb(187, 185, 185);
   text-align: center;
   height: 2rem;
   margin: 0;
 }
 
+#grabData {
+  background-color: rgb(179, 80, 80);
+}
+
+#hashData {
+  background-color: rgb(128, 202, 140);
+}
+
 #data {
   list-style: none;
-  width: 15%;
+  width: 25%;
 }
