@@ -2,7 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 const request = require('request');
 const router = express.Router();
 const ENDPOINT_DATA: string =
-  'https://random-data-api.com/api/coffee/random_coffee?size=10';
+  'https://random-data-api.com/api/coffee/random_coffee?size=20';
 
 router.get('/', (req, res) => {
   let apiResponse;

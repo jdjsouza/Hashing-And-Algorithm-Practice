@@ -1,0 +1,11 @@
+.buttons {
+  background-color: grey;
+  text-align: center;
+  height: 2rem;
+  margin: 0;
+}
+
+#data {
+  list-style: none;
+  width: 15%;
+}
