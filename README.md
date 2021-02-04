@@ -1,3 +1,6 @@
+![alt text](https://github.com/CDHIPPLE0/Hashing-And-Algorithm-Practice/public/App Pic.png?raw=true)
+
+
 # Hashing-And-Algorithm-Practice
 npm install
 Run the server w/ npm run server
