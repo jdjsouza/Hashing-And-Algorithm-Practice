@@ -43,7 +43,12 @@ body {
 }
 
 #displayData {
+  margin-right: 2rem;
   background-color: rgba(83, 85, 204, 0.8);
+}
+
+#sort {
+  margin-right: 2rem;
 }
 
 #data {
