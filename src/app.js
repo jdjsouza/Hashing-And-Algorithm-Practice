@@ -1,5 +1,6 @@
 window.onload = function () {
   //See comments below on how to configure for different data sets!
+  //Be sure to check out the ransomUserGet.ts file for how to change your data type coming in.
   let displayData;
   let storage = [];
   const storageLimit = 97; //set this to be larger or === your data set number, you should choose a prime number.
