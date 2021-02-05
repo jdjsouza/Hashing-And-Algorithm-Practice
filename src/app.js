@@ -55,13 +55,10 @@ window.onload = function () {
 
     switch (process) {
       case 'display':
-        console.log(data);
         list.textContent = '';
         data.map((item) => {
-          console.log(item);
           const entry = document.createElement('li');
-          console.log(item.length); //This is for the display incoming data from this site should have a uid.
-          !item.uid
+          !item.uid //This is for the display incoming data from this site should have a uid.
             ? (entry.textContent = item)
             : (entry.textContent = item.blend_name); // change the textContent to item.trait_required for your specific data set as configured in server *see server comments.
           list.appendChild(entry);
@@ -69,10 +66,10 @@ window.onload = function () {
         break;
       case 'add':
         let add = (key, value) => {
-          const index = hash(key, storageLimit);
+          const index = hash(key.trim(), storageLimit);
           let inserted;
           if (storage[index] === undefined) {
-            storage[index] = [[key, value]];
+            storage[index] = [[key.trim(), value.trim()]];
           } else {
             inserted = false;
             for (let i = 0; i < storage[index].length; i++) {
@@ -91,15 +88,12 @@ window.onload = function () {
         break;
       case 'lookup':
         let lookup = (key) => {
-          const index = hash(key, storageLimit);
-          console.log(index, storage);
+          const index = hash(key.trim(), storageLimit);
           if (storage[index] === undefined) {
             return undefined;
           } else {
             for (let i = 0; i < storage[index].length; i++) {
               if (storage[index][i][0] === key) {
-                console.log('success');
-                console.log(storage[index][i][1]);
                 return storage[index][i][1];
               }
             }
@@ -108,7 +102,6 @@ window.onload = function () {
         let display = () => {
           const result = lookup(data);
           const entry = document.createElement('li');
-          console.log('result', result);
           result != undefined
             ? (entry.textContent = result)
             : (entry.textContent = 'Nothing here');
