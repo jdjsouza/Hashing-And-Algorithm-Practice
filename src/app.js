@@ -3,6 +3,7 @@ window.onload = function () {
   //Be sure to check out the ransomUserGet.ts file for how to change your data type coming in.
   let displayData;
   let storage = [];
+  let keyList = [];
   const storageLimit = 97; //set this to be larger or === your data set number, you should choose a prime number.
   const h1 = document.getElementById('h1');
   const list = document.getElementById('data');
@@ -10,16 +11,17 @@ window.onload = function () {
   const displayButton = document.getElementById('displayData');
   const hashButton = document.getElementById('hashData');
   const searchButton = document.getElementById('searchButton');
-
+  const sortButton = document.getElementById('sortButton');
   async function getData() {
     await fetch('http://localhost:5000')
       .then((response) => response.json())
       .then((data) => {
         data.map((item) => {
+          keyList.push(item.blend_name);
           const entry = document.createElement('li');
           entry.textContent = `KEY : ${item.blend_name} 
-          ${'============================'}
-          VALUE : ${item.notes}`; //change for data set
+          ${'=========================='}
+          VALUE : ${item.notes}`; //change for data set ^ & <
           list.appendChild(entry);
         });
         displayData = data;
@@ -34,6 +36,7 @@ window.onload = function () {
   grabButton.addEventListener('click', () => {
     h1.innerHTML = 'The Key - Value as it comes from the server';
     storage = [];
+    keyList = [];
     list.textContent = '';
     getData();
   });
@@ -51,11 +54,16 @@ window.onload = function () {
   });
 
   searchButton.addEventListener('click', () => {
-    h1.innerHTML = 'The data content for your item key';
+    h1.innerHTML = 'The data content for your hash key';
     const searchField = document.getElementById('searchField');
     let data = searchField.value;
     list.textContent = '';
     processData('lookup', data);
+  });
+
+  sortButton.addEventListener('click', () => {
+    let data = sort.value;
+    processData('sort', data);
   });
 
   function processData(process, data) {
@@ -160,6 +168,36 @@ window.onload = function () {
           display();
         }
         break;
+      case 'sort': //data in this case is the method for switching pulled from the select menu
+        let sortKeys = () => {
+          if (keyList.length === 0) {
+            const entry = document.createElement('li');
+            entry.textContent = 'Nothing to sort';
+            list.appendChild(entry);
+          } else {
+            switch (data) {
+              case 'Alphabetically':
+                console.log(keyList);
+                for (let i = 1; i < keyList.length; i++) {
+                  let j = i - 1;
+                  let current = keyList[i];
+                  let currentVal = keyList[i][0];
+                  while (j > -1 && currentVal < keyList[j][0]) {
+                    keyList[j + 1] = keyList[j];
+                    j--;
+                  }
+                  keyList[j + 1] = current;
+                }
+                h1.innerHTML =
+                  'Insertion Sort by first character in each string';
+                processData('display', keyList);
+                break;
+              default:
+                break;
+            }
+          }
+        };
+        sortKeys();
       default:
         return 0;
     }

@@ -86,7 +86,6 @@ body {
 
 @media (max-width: 1275px) {
   .buttons {
-    text-align: left;
     height: 15%;
   }
   .spanGroup {
