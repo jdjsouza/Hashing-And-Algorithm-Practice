@@ -17,7 +17,9 @@ window.onload = function () {
       .then((data) => {
         data.map((item) => {
           const entry = document.createElement('li');
-          entry.textContent = item.blend_name + item.notes; //change for data set
+          entry.textContent = `KEY : ${item.blend_name} 
+          ${'============================'}
+          VALUE : ${item.notes}`; //change for data set
           list.appendChild(entry);
         });
         displayData = data;
