@@ -30,6 +30,7 @@ window.onload = function () {
   }
 
   grabButton.addEventListener('click', () => {
+    h1.innerHTML = 'The Key - Value as it comes from the server';
     storage = [];
     list.textContent = '';
     getData();
