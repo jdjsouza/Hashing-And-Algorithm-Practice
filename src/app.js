@@ -175,7 +175,9 @@ window.onload = function () {
             entry.textContent = 'Nothing to sort';
             list.appendChild(entry);
           } else {
-            switch (data) {
+            switch (
+              data //add cases for your sort method
+            ) {
               case 'Alphabetically':
                 console.log(keyList);
                 for (let i = 1; i < keyList.length; i++) {
@@ -190,7 +192,7 @@ window.onload = function () {
                 }
                 h1.innerHTML =
                   'Insertion Sort by first character in each string';
-                processData('display', keyList);
+                processData('display', keyList); //to output the result of the sorted array
                 break;
               default:
                 break;
