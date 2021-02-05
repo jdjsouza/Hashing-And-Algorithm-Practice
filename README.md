@@ -1,4 +1,4 @@
-![alt text](https://github.com/CDHIPPLE0/Hashing-And-Algorithm-Practice/public/App Pic.png?raw=true)
+![alt text](https://github.com/CDHIPPLE0/Hashing-And-Algorithm-Practice/blob/main/public/AppPic.png?raw=true)
 
 
 # Hashing-And-Algorithm-Practice
