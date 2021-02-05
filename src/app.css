@@ -34,6 +34,10 @@ body {
   padding-top: 4rem;
 }
 
+.displayContent li {
+  padding: 5px;
+}
+
 #grabData {
   background-color: rgba(179, 80, 80, 0.8);
 }
