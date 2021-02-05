@@ -1,7 +1,9 @@
 body {
   background-color: rgb(221, 218, 212);
 }
-
+.spanGroup {
+  display: inline-block;
+}
 .buttons {
   border: inset rgb(47, 47, 49) 1px;
   padding-top: 8px;
@@ -63,4 +65,24 @@ body {
 #data {
   list-style: none;
   width: 25%;
+}
+
+@media (max-width: 1100px) {
+  .buttons {
+    text-align: left;
+    height: 5rem;
+  }
+  .spanGroup {
+    margin-top: 5px;
+    display: inline-block;
+  }
+
+  .displayContent {
+    margin: auto;
+    width: 100%;
+  }
+  .display {
+    width: 100%;
+    text-align: left;
+  }
 }

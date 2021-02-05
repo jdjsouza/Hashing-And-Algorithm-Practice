@@ -7,19 +7,27 @@
     <link rel="stylesheet" href="./app.css" />
     <title>Algorithm Playground</title>
   </head>
+  
   <body>
     <div class="container">
     <div class="buttons">
       <button id="grabData">Grab Data</button>
       <button id="hashData">Hash Data</button>
       <button id="displayData">Display Keys</button>
-      <label for="sort" style="margin-left: 2rem;">Choose a sorting method:</label>
+
+      <span class="spanGroup"> 
+      <label for="sort" style="margin-left: 1rem;">Choose a sorting method:</label>
       <select name="sort" id="sort">
       <option value="Alphabetically">Alphabetically</option>
     </select>
     <button id="sortButton">Sort Data</button>
+  </span>
+  
+    <span class="spanGroup">
     <button id="searchButton">Lookup Data By Key</button>
       <input id="searchField"></input>
+    </span>
+
     </div>
     <div class="display">
       <div class="displayContent">
