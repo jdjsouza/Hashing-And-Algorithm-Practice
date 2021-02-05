@@ -1,3 +1,7 @@
+* {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
 body {
   background-color: rgb(221, 218, 212);
 }
@@ -80,7 +84,7 @@ body {
   width: 25%;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1275px) {
   .buttons {
     text-align: left;
     height: 15%;

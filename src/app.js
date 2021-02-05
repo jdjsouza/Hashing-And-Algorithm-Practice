@@ -10,6 +10,7 @@ window.onload = function () {
   const displayButton = document.getElementById('displayData');
   const hashButton = document.getElementById('hashData');
   const searchButton = document.getElementById('searchButton');
+
   async function getData() {
     await fetch('http://localhost:5000')
       .then((response) => response.json())
@@ -27,21 +28,25 @@ window.onload = function () {
         console.log(err);
       });
   }
+
   grabButton.addEventListener('click', () => {
     storage = [];
     list.textContent = '';
     getData();
   });
+
   displayButton.addEventListener('click', () => {
     h1.innerHTML = 'A list of all keys in your table';
     processData('display', displayData);
   });
+
   hashButton.addEventListener('click', () => {
     h1.innerHTML =
       'A list of your tables buckets & the number of items that hashed to each ';
     list.textContent = '';
     processData('add', displayData);
   });
+
   searchButton.addEventListener('click', () => {
     h1.innerHTML = 'The data content for your item key';
     const searchField = document.getElementById('searchField');
@@ -61,6 +66,7 @@ window.onload = function () {
 
     switch (process) {
       case 'display':
+        console.log(data);
         list.textContent = '';
         if (data == undefined) {
           const entry = document.createElement('li');
