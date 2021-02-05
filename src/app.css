@@ -4,6 +4,9 @@ body {
 .spanGroup {
   display: inline-block;
 }
+.h1 {
+  margin-top: 0.5rem;
+}
 .buttons {
   border: inset rgb(47, 47, 49) 1px;
   padding-top: 8px;
@@ -29,11 +32,17 @@ body {
   width: 50%;
 }
 .displayContent * {
+  text-align: center;
   margin: auto;
 }
 .displayContent ul {
+  text-align: center;
+  padding: 0;
   margin: auto;
   padding-top: 4rem;
+}
+.displayContent li {
+  text-align: center;
 }
 
 .displayContent li {

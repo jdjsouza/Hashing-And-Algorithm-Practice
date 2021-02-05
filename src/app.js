@@ -4,6 +4,7 @@ window.onload = function () {
   let displayData;
   let storage = [];
   const storageLimit = 97; //set this to be larger or === your data set number, you should choose a prime number.
+  // const h1 =
   const list = document.getElementById('data');
   const grabButton = document.getElementById('grabData');
   const displayButton = document.getElementById('displayData');
