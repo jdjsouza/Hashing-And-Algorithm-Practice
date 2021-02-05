@@ -35,6 +35,7 @@ window.onload = function () {
     processData('display', displayData);
   });
   hashButton.addEventListener('click', () => {
+    list.textContent = '';
     processData('add', displayData);
   });
   searchButton.addEventListener('click', () => {
@@ -84,6 +85,22 @@ window.onload = function () {
         };
         data.map((item) => {
           add(item.blend_name, item.notes); //change these to match your data, the first item being the key (generally a name) and the second being the data you want to associate with the key.
+        });
+        storage.map((element, index) => {
+          const entry = document.createElement('li');
+
+          console.log(element.length);
+          entry.textContent =
+            'Bucket' +
+            ' ' +
+            index +
+            ' - ' +
+            ' ' +
+            element.length.toString() +
+            ' - ' +
+            'Item(s)';
+
+          list.appendChild(entry);
         });
         break;
       case 'lookup':
