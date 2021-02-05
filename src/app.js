@@ -4,7 +4,7 @@ window.onload = function () {
   let displayData;
   let storage = [];
   const storageLimit = 97; //set this to be larger or === your data set number, you should choose a prime number.
-  // const h1 =
+  const h1 = document.getElementById('h1');
   const list = document.getElementById('data');
   const grabButton = document.getElementById('grabData');
   const displayButton = document.getElementById('displayData');
@@ -33,13 +33,17 @@ window.onload = function () {
     getData();
   });
   displayButton.addEventListener('click', () => {
+    h1.innerHTML = 'A list of all keys in your table';
     processData('display', displayData);
   });
   hashButton.addEventListener('click', () => {
+    h1.innerHTML =
+      'A list of your tables buckets & the number of items that hashed to each ';
     list.textContent = '';
     processData('add', displayData);
   });
   searchButton.addEventListener('click', () => {
+    h1.innerHTML = 'The data content for your item key';
     const searchField = document.getElementById('searchField');
     let data = searchField.value;
     list.textContent = '';
@@ -58,35 +62,48 @@ window.onload = function () {
     switch (process) {
       case 'display':
         list.textContent = '';
-        data.map((item) => {
+        if (data == undefined) {
           const entry = document.createElement('li');
-          !item.uid //This is for the display incoming data from this site should have a uid.
-            ? (entry.textContent = item)
-            : (entry.textContent = item.blend_name); // change the textContent to item.trait_required for your specific data set as configured in server *see server comments.
+          entry.textContent = 'Nothing Here';
           list.appendChild(entry);
-        });
+        } else {
+          data.map((item) => {
+            const entry = document.createElement('li');
+            !item.uid //This is for the display incoming data from this site should have a uid.
+              ? (entry.textContent = item)
+              : (entry.textContent = item.blend_name); // change the textContent to item.trait_required for your specific data set as configured in server *see server comments.
+            list.appendChild(entry);
+          });
+        }
         break;
       case 'add':
-        let add = (key, value) => {
-          const index = hash(key.trim(), storageLimit);
-          let inserted;
-          if (storage[index] === undefined) {
-            storage[index] = [[key.trim(), value.trim()]];
-          } else {
-            inserted = false;
-            for (let i = 0; i < storage[index].length; i++) {
-              if (storage[index][i][1] === value) {
-                inserted = true;
+        if (data == undefined) {
+          const entry = document.createElement('li');
+          entry.textContent = 'Nothing To Hash';
+          list.appendChild(entry);
+        } else {
+          let add = (key, value) => {
+            const index = hash(key.trim(), storageLimit);
+            let inserted;
+            if (storage[index] === undefined) {
+              storage[index] = [[key.trim(), value.trim()]];
+            } else {
+              inserted = false;
+              for (let i = 0; i < storage[index].length; i++) {
+                if (storage[index][i][1] === value) {
+                  inserted = true;
+                }
               }
             }
-          }
-          if (inserted === false) {
-            storage[index].push([key, value]);
-          }
-        };
-        data.map((item) => {
-          add(item.blend_name, item.notes); //change these to match your data, the first item being the key (generally a name) and the second being the data you want to associate with the key.
-        });
+            if (inserted === false) {
+              storage[index].push([key, value]);
+            }
+          };
+
+          data.map((item) => {
+            add(item.blend_name, item.notes); //change these to match your data, the first item being the key (generally a name) and the second being the data you want to associate with the key.
+          });
+        }
         storage.map((element, index) => {
           const entry = document.createElement('li');
 
@@ -105,28 +122,34 @@ window.onload = function () {
         });
         break;
       case 'lookup':
-        let lookup = (key) => {
-          const index = hash(key.trim(), storageLimit);
-          if (storage[index] === undefined) {
-            return undefined;
-          } else {
-            for (let i = 0; i < storage[index].length; i++) {
-              if (storage[index][i][0] === key) {
-                return storage[index][i][1];
+        if (data == '') {
+          const entry = document.createElement('li');
+          entry.textContent = 'Nothing To Lookup';
+          list.appendChild(entry);
+        } else {
+          let lookup = (key) => {
+            const index = hash(key.trim(), storageLimit);
+            if (storage[index] === undefined) {
+              return undefined;
+            } else {
+              for (let i = 0; i < storage[index].length; i++) {
+                if (storage[index][i][0] === key) {
+                  return storage[index][i][1];
+                }
               }
             }
-          }
-        };
-        let display = () => {
-          const result = lookup(data);
-          const entry = document.createElement('li');
-          result != undefined
-            ? (entry.textContent = result)
-            : (entry.textContent = 'Nothing here');
-          list.appendChild(entry);
-        };
-        display();
+          };
 
+          let display = () => {
+            const result = lookup(data);
+            const entry = document.createElement('li');
+            result != undefined
+              ? (entry.textContent = result)
+              : (entry.textContent = 'Nothing here');
+            list.appendChild(entry);
+          };
+          display();
+        }
         break;
       default:
         return 0;

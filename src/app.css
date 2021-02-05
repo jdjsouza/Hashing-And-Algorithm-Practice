@@ -4,8 +4,8 @@ body {
 .spanGroup {
   display: inline-block;
 }
-.h1 {
-  margin-top: 0.5rem;
+#h1 {
+  margin-top: 1rem;
 }
 .buttons {
   border: inset rgb(47, 47, 49) 1px;
