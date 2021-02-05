@@ -58,6 +58,10 @@ body {
   background-color: rgba(196, 204, 83, 0.8);
 }
 
+#searchButton {
+  background-color: rgba(137, 235, 230, 0.8);
+}
+
 #sort {
   margin-right: 2rem;
 }
