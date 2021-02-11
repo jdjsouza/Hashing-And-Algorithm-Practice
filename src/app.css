@@ -1,7 +1,16 @@
+* {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
 body {
   background-color: rgb(221, 218, 212);
 }
-
+.spanGroup {
+  display: inline-block;
+}
+#h1 {
+  margin-top: 1rem;
+}
 .buttons {
   border: inset rgb(47, 47, 49) 1px;
   padding-top: 8px;
@@ -27,11 +36,21 @@ body {
   width: 50%;
 }
 .displayContent * {
+  text-align: center;
   margin: auto;
 }
 .displayContent ul {
+  text-align: center;
+  padding: 0;
   margin: auto;
   padding-top: 4rem;
+}
+.displayContent li {
+  text-align: center;
+}
+
+.displayContent li {
+  padding: 5px;
 }
 
 #grabData {
@@ -47,11 +66,39 @@ body {
   background-color: rgba(83, 85, 204, 0.8);
 }
 
+#sortButton {
+  margin-right: 2rem;
+  background-color: rgba(196, 204, 83, 0.8);
+}
+
+#searchButton {
+  background-color: rgba(137, 235, 230, 0.8);
+}
+
 #sort {
   margin-right: 2rem;
 }
 
 #data {
   list-style: none;
-  width: 25%;
+  width: 40%;
+}
+
+@media (max-width: 1275px) {
+  .buttons {
+    height: 15%;
+  }
+  .spanGroup {
+    margin-top: 5px;
+    display: inline-block;
+  }
+
+  .displayContent {
+    margin: auto;
+    width: 100%;
+  }
+  .display {
+    width: 100%;
+    text-align: left;
+  }
 }

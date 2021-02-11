@@ -3,24 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
+      </style>
     <script type="text/javascript" src="./app.js"></script>
     <link rel="stylesheet" href="./app.css" />
-    <title>Algorithm Playground</title>
+    <title>Hashing Practice</title>
   </head>
+  
   <body>
     <div class="container">
     <div class="buttons">
       <button id="grabData">Grab Data</button>
       <button id="hashData">Hash Data</button>
-      <label for="sort" style="margin-left: 2rem;">Choose a sorting method:</label>
+      <button id="displayData">Display Keys</button>
+      
+      <span class="spanGroup">
+      <button id="searchButton">Lookup Data By Key</button>
+        <input id="searchField"></input>
+      </span>
+
+      <span class="spanGroup"> 
+      <label for="sort" style="margin-left: 1rem;">Choose a sorting method:</label>
       <select name="sort" id="sort">
       <option value="Alphabetically">Alphabetically</option>
-     </select>
-      <button id="displayData">Display Data</button>
-      <button id="searchButton">Search By Name</button>
-      <input id="searchField"></input>
+    </select>
+    <button id="sortButton">Sort Data</button>
+  </span>
+  
+
     </div>
     <div class="display">
+      <div id=h1>Grab Some Data !</div>
       <div class="displayContent">
     <ul id="data"></ul>
   </div>

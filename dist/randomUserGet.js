@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const request = require('request');
 const router = express_1.default.Router();
-const ENDPOINT_DATA = 'https://random-data-api.com/api/coffee/random_coffee?size=10';
+const ENDPOINT_DATA = 'https://random-data-api.com/api/coffee/random_coffee?size=10'; //this site has many data types, change the URL to access different sets of data. eg /api/users/etc size= sets the number of objects sent back.
 router.get('/', (req, res) => {
     let apiResponse;
     request(ENDPOINT_DATA, { json: true }, function (error, response, body) {
